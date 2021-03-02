@@ -21,14 +21,17 @@ class User:
             "login-ident": self.ident,
             "login-pwd": self.passw
         }
+        try:
+            # check if you are already authenticated
+            self.reload()
+        except:
+            res_login = self.sess.post(self.url, data)
 
-        res_login = self.sess.post(self.url, data)
-        if not self.check_login(res_login):
-            raise Exception("Login error. Check data")
-        self.data = self.parse_data(res_login)
+            if not self.check_login(res_login):
+                raise Exception("Login error. Check data")
+            self.data = self.parse_data(res_login)
     
     def check_login(self, result):
-        #error_xpath = "/html/body/div[1]/div[1]/div/div[1]/div"
         if "ID utente o password non corretto." in result.text:
             return False
         return True
@@ -46,7 +49,9 @@ class User:
         ret = {}
         tree = html.fromstring(result.content)
         for key in self.xpaths:
-            elem = tree.xpath(self.xpaths[key])[0]
+            attr = "text()"
+            xpath = self.xpaths[key] + attr
+            elem = tree.xpath(xpath)[0]
             for r in self.toReplace:
                 elem = elem.replace(r, '')
             elem = elem.replace(',', '.')

@@ -1,4 +1,4 @@
 {
-    "GB_used": "/html/body/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div[1]/span[1]/text()",
-    "balance": "/html/body/div[1]/div[1]/div/div/div/div/div[2]/div[2]/h2/b/text()"
+    "GB_used": "/html/body/div[1]/div[1]/div/div/div/div/div[2]/div[2]/div[3]/div[2]/div[1]/div/div[1]/span[1]/",
+    "balance": "/html/body/div[1]/div[1]/div/div/div/div/div[2]/div[2]/h2/b/"
 }
